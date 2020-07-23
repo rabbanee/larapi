@@ -15,7 +15,7 @@ class StudentController extends Controller
         return view('index', compact('data'));
     }
 
-    public function getStudents()
+    public function index()
     {
         $data = Student::all();
         return response()->json($data, 200);
@@ -25,5 +25,16 @@ class StudentController extends Controller
     {
         $data = Student::find($id);
         return response()->json($data, 200);
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'nisn' => 'required',
+            'nama' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jurusan' => 'required',
+        ]);
     }
 }
