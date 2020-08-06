@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/corona', 'StudentController@corona')->name('corona');
+
+Route::get('students', 'StudentControlelr@getStudent');

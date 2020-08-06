@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Book;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Book\BookCollection;
+use App\Http\Resources\Book\BookResource;
 use Illuminate\Http\Request;
 
 use function GuzzleHttp\Promise\all;
@@ -18,11 +20,12 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
-        $response = [
-            'success' => 'true',
-            'data' => $books
-        ];
-        return response()->json($response, 200);
+        // $response = [
+        //     'success' => 'true',
+        //     'data' => $books
+        // ];
+        return new BookCollection($books);
+        // return response()->json($response, 200);
     }
 
     /**
@@ -53,7 +56,7 @@ class BookController extends Controller
             'success' => 'true',
             'data' => $book
         ];
-        return response()->json($response, 200);;
+        return response()->json($response, 200);
     }
 
     /**
@@ -65,7 +68,11 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::find($id);
-        return response()->json($book, 200);
+        if (is_null($book)) {
+            return response()->json('Data is not found', 200);
+        }
+
+        return new BookResource($book);
     }
 
     /**
