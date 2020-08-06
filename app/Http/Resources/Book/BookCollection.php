@@ -14,6 +14,7 @@ class BookCollection extends ResourceCollection
      */
     public function toArray($request)
     {
+        // get all data
         return [
             'data' => BookResource::collection($this->collection),
             'total' => $this->collection->count()
