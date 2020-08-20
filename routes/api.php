@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +28,9 @@ Route::delete('student/{id}', 'StudentController@destroy');
 
 // Books
 Route::apiResource('books', 'API\BookController');
+
+Route::get('status/{id}', 'UserStatusController@show');
+
+Auth::routes();
+
+Route::get('materi/{id}', 'MateriController@show');

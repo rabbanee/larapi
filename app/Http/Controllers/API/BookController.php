@@ -71,7 +71,6 @@ class BookController extends Controller
         if (is_null($book)) {
             return response()->json('Data is not found', 200);
         }
-
         return new BookResource($book);
     }
 

@@ -19,7 +19,7 @@ class StudentController extends Controller
 
     public function index()
     {
-        $data = Student::all();
+        $data = Student::paginate(2);
         return new StudentCollection($data);
         return response()->json($data, 200);
     }

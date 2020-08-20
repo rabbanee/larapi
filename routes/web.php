@@ -19,4 +19,7 @@ Route::get('/', function () {
 
 Route::get('/corona', 'StudentController@corona')->name('corona');
 
-Route::get('students', 'StudentControlelr@getStudent');
+Route::get('students', 'StudentController@getStudent');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

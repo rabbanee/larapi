@@ -18,7 +18,9 @@ class StudentCollection extends ResourceCollection
             [
                 // 'data' => $this->collection
                 'data' => StudentResource::collection($this->collection),
-                'total' => $this->collection->count()
+                'meta' => [
+                    'showed' => $this->collection->count(),
+                ],
             ];
     }
 }
